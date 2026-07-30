@@ -17,6 +17,8 @@ import { Route as HisWordsRouteImport } from './routes/his-words'
 import { Route as LetterRouteImport } from './routes/letter'
 import { Route as MyReplyRouteImport } from './routes/my-reply'
 import { Route as PrayersRouteImport } from './routes/prayers'
+import { Route as PromisesRouteImport } from './routes/promises'
+import { Route as WishesRouteImport } from './routes/wishes'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -58,6 +60,16 @@ const PrayersRoute = PrayersRouteImport.update({
   path: '/prayers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PromisesRoute = PromisesRouteImport.update({
+  id: '/promises',
+  path: '/promises',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WishesRoute = WishesRouteImport.update({
+  id: '/wishes',
+  path: '/wishes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -68,6 +80,8 @@ export interface FileRoutesByFullPath {
   '/letter': typeof LetterRoute
   '/my-reply': typeof MyReplyRoute
   '/prayers': typeof PrayersRoute
+  '/promises': typeof PromisesRoute
+  '/wishes': typeof WishesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +92,8 @@ export interface FileRoutesByTo {
   '/letter': typeof LetterRoute
   '/my-reply': typeof MyReplyRoute
   '/prayers': typeof PrayersRoute
+  '/promises': typeof PromisesRoute
+  '/wishes': typeof WishesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +105,8 @@ export interface FileRoutesById {
   '/letter': typeof LetterRoute
   '/my-reply': typeof MyReplyRoute
   '/prayers': typeof PrayersRoute
+  '/promises': typeof PromisesRoute
+  '/wishes': typeof WishesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +119,8 @@ export interface FileRouteTypes {
     | '/letter'
     | '/my-reply'
     | '/prayers'
+    | '/promises'
+    | '/wishes'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +131,8 @@ export interface FileRouteTypes {
     | '/letter'
     | '/my-reply'
     | '/prayers'
+    | '/promises'
+    | '/wishes'
   id:
     | '__root__'
     | '/'
@@ -121,6 +143,8 @@ export interface FileRouteTypes {
     | '/letter'
     | '/my-reply'
     | '/prayers'
+    | '/promises'
+    | '/wishes'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +156,8 @@ export interface RootRouteChildren {
   LetterRoute: typeof LetterRoute
   MyReplyRoute: typeof MyReplyRoute
   PrayersRoute: typeof PrayersRoute
+  PromisesRoute: typeof PromisesRoute
+  WishesRoute: typeof WishesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -192,6 +218,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrayersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/promises': {
+      id: '/promises'
+      path: '/promises'
+      fullPath: '/promises'
+      preLoaderRoute: typeof PromisesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wishes': {
+      id: '/wishes'
+      path: '/wishes'
+      fullPath: '/wishes'
+      preLoaderRoute: typeof WishesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -204,6 +244,8 @@ const rootRouteChildren: RootRouteChildren = {
   LetterRoute: LetterRoute,
   MyReplyRoute: MyReplyRoute,
   PrayersRoute: PrayersRoute,
+  PromisesRoute: PromisesRoute,
+  WishesRoute: WishesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
