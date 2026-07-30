@@ -13,7 +13,10 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as FiftyRouteImport } from './routes/fifty'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as HeroRouteImport } from './routes/hero'
+import { Route as HisWordsRouteImport } from './routes/his-words'
 import { Route as LetterRouteImport } from './routes/letter'
+import { Route as MyReplyRouteImport } from './routes/my-reply'
+import { Route as PrayersRouteImport } from './routes/prayers'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -35,9 +38,24 @@ const HeroRoute = HeroRouteImport.update({
   path: '/hero',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HisWordsRoute = HisWordsRouteImport.update({
+  id: '/his-words',
+  path: '/his-words',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LetterRoute = LetterRouteImport.update({
   id: '/letter',
   path: '/letter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyReplyRoute = MyReplyRouteImport.update({
+  id: '/my-reply',
+  path: '/my-reply',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrayersRoute = PrayersRouteImport.update({
+  id: '/prayers',
+  path: '/prayers',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -46,14 +64,20 @@ export interface FileRoutesByFullPath {
   '/fifty': typeof FiftyRoute
   '/gallery': typeof GalleryRoute
   '/hero': typeof HeroRoute
+  '/his-words': typeof HisWordsRoute
   '/letter': typeof LetterRoute
+  '/my-reply': typeof MyReplyRoute
+  '/prayers': typeof PrayersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/fifty': typeof FiftyRoute
   '/gallery': typeof GalleryRoute
   '/hero': typeof HeroRoute
+  '/his-words': typeof HisWordsRoute
   '/letter': typeof LetterRoute
+  '/my-reply': typeof MyReplyRoute
+  '/prayers': typeof PrayersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -61,14 +85,42 @@ export interface FileRoutesById {
   '/fifty': typeof FiftyRoute
   '/gallery': typeof GalleryRoute
   '/hero': typeof HeroRoute
+  '/his-words': typeof HisWordsRoute
   '/letter': typeof LetterRoute
+  '/my-reply': typeof MyReplyRoute
+  '/prayers': typeof PrayersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/fifty' | '/gallery' | '/hero' | '/letter'
+  fullPaths:
+    | '/'
+    | '/fifty'
+    | '/gallery'
+    | '/hero'
+    | '/his-words'
+    | '/letter'
+    | '/my-reply'
+    | '/prayers'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/fifty' | '/gallery' | '/hero' | '/letter'
-  id: '__root__' | '/' | '/fifty' | '/gallery' | '/hero' | '/letter'
+  to:
+    | '/'
+    | '/fifty'
+    | '/gallery'
+    | '/hero'
+    | '/his-words'
+    | '/letter'
+    | '/my-reply'
+    | '/prayers'
+  id:
+    | '__root__'
+    | '/'
+    | '/fifty'
+    | '/gallery'
+    | '/hero'
+    | '/his-words'
+    | '/letter'
+    | '/my-reply'
+    | '/prayers'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,7 +128,10 @@ export interface RootRouteChildren {
   FiftyRoute: typeof FiftyRoute
   GalleryRoute: typeof GalleryRoute
   HeroRoute: typeof HeroRoute
+  HisWordsRoute: typeof HisWordsRoute
   LetterRoute: typeof LetterRoute
+  MyReplyRoute: typeof MyReplyRoute
+  PrayersRoute: typeof PrayersRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -109,11 +164,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HeroRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/his-words': {
+      id: '/his-words'
+      path: '/his-words'
+      fullPath: '/his-words'
+      preLoaderRoute: typeof HisWordsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/letter': {
       id: '/letter'
       path: '/letter'
       fullPath: '/letter'
       preLoaderRoute: typeof LetterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-reply': {
+      id: '/my-reply'
+      path: '/my-reply'
+      fullPath: '/my-reply'
+      preLoaderRoute: typeof MyReplyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/prayers': {
+      id: '/prayers'
+      path: '/prayers'
+      fullPath: '/prayers'
+      preLoaderRoute: typeof PrayersRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -124,7 +200,10 @@ const rootRouteChildren: RootRouteChildren = {
   FiftyRoute: FiftyRoute,
   GalleryRoute: GalleryRoute,
   HeroRoute: HeroRoute,
+  HisWordsRoute: HisWordsRoute,
   LetterRoute: LetterRoute,
+  MyReplyRoute: MyReplyRoute,
+  PrayersRoute: PrayersRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
