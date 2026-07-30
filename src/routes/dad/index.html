@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sir, The Man I Adore Most</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --coffee:#2b1710;
+  --cocoa:#4a2a1e;
+  --mocha:#6f4634;
+  --cream:#fff8ed;
+  --ivory:#f8ecda;
+  --champagne:#e8c987;
+  --bronze:#b78147;
+  --gold:#f4d48a;
+  --ink:#28170f;
+  --soft:#fffaf1;
+  --glass:rgba(255,248,237,.72);
+  --title:"Cormorant Garamond", Georgia, serif;
+  --text:"Inter", Arial, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;overflow:hidden}
+body{
+  font-family:var(--text);
+  color:var(--cream);
+  background:
+    radial-gradient(circle at 12% 8%,rgba(244,212,138,.24),transparent 30%),
+    linear-gradient(135deg,#2b1710 0%,#6f4634 47%,#fff8ed 100%);
+}
+button{font:inherit;border:0;cursor:pointer}
+img{max-width:100%;display:block}
+.page{
+  position:fixed;
+  inset:0;
+  display:none;
+  min-height:100vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  padding:26px;
+  background:
+    radial-gradient(circle at 12% 14%,rgba(244,212,138,.28),transparent 24%),
+    radial-gradient(circle at 86% 12%,rgba(255,248,237,.46),transparent 25%),
+    linear-gradient(135deg,#2b1710 0%,#704a38 52%,#fff8ed 100%);
+}
+.page.active{display:flex}
+.spread{
+  width:min(1160px,100%);
+  min-height:calc(100vh - 52px);
+  margin:auto;
+  display:grid;
+  gap:24px;
+  align-items:center;
+  padding-bottom:62px;
+}
+.glass{
+  background:var(--glass);
+  color:var(--ink);
+  border:1px solid rgba(255,248,237,.58);
+  border-radius:8px;
+  box-shadow:0 22px 60px rgba(36,19,12,.28);
+  backdrop-filter:blur(18px);
+}
+.kicker{
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-size:.72rem;
+  font-weight:800;
+  color:var(--champagne);
+}
+h1,h2,h3{font-family:var(--title);letter-spacing:0}
+h1{font-size:clamp(3.3rem,9vw,8.8rem);line-height:.86}
+h2{font-size:clamp(2.15rem,5.8vw,5rem);line-height:.94}
+h3{font-size:clamp(1.45rem,2.4vw,2rem);line-height:1}
+p{line-height:1.72}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  padding:11px 20px;
+  border-radius:999px;
+  color:#2b1710;
+  background:linear-gradient(135deg,#fffaf1,#e8c987);
+  box-shadow:0 14px 28px rgba(36,19,12,.22);
+  font-weight:800;
+}
+.nav{
+  position:fixed;
+  left:50%;
+  bottom:14px;
+  transform:translateX(-50%);
+  z-index:30;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  max-width:calc(100vw - 18px);
+  padding:8px 10px;
+  border-radius:999px;
+  background:rgba(43,23,16,.54);
+  border:1px solid rgba(255,248,237,.28);
+  backdrop-filter:blur(16px);
+  overflow-x:auto;
+}
+.nav button{
+  flex:0 0 auto;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  color:var(--cream);
+  background:rgba(255,248,237,.18);
+  font-weight:800;
+  font-size:1.35rem;
+}
+.nav button:hover,.nav button.active{background:var(--cream);color:var(--coffee)}
+.nav .wide{width:48px;padding:0;border-radius:50%}
+.music{
+  position:fixed;
+  top:16px;
+  right:16px;
+  z-index:35;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  color:var(--coffee);
+  background:rgba(255,248,237,.84);
+  border:1px solid rgba(244,212,138,.72);
+  box-shadow:0 14px 32px rgba(36,19,12,.22);
+}
+.emoji-layer,.sparkle-layer{position:fixed;inset:0;pointer-events:none;z-index:8;overflow:hidden}
+.love-marquee{
+  position:fixed;
+  left:0;
+  top:50%;
+  z-index:34;
+  display:none;
+  width:max-content;
+  padding:0;
+  color:var(--gold);
+  background:transparent;
+  border:0;
+  font-family:var(--title);
+  font-size:clamp(1rem,2.4vw,1.75rem);
+  font-style:italic;
+  line-height:1;
+  white-space:nowrap;
+  text-shadow:0 8px 24px rgba(36,19,12,.32);
+  animation:loveSlide 9s linear forwards;
+}
+.love-marquee.show{display:block}
+@keyframes loveSlide{
+  0%{transform:translate(-110%,-50%);opacity:0}
+  10%{opacity:1}
+  88%{opacity:1}
+  100%{transform:translate(110vw,-50%);opacity:0}
+}
+.float-emoji{
+  position:absolute;
+  bottom:-46px;
+  opacity:.82;
+  animation:rise linear infinite;
+  text-shadow:0 10px 24px rgba(36,19,12,.22);
+}
+@keyframes rise{
+  0%{transform:translateY(0) rotate(0deg);opacity:0}
+  12%{opacity:.9}
+  100%{transform:translateY(-112vh) rotate(260deg);opacity:0}
+}
+.sparkle{
+  position:fixed;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:radial-gradient(circle,#fff 0%,#f4d48a 45%,transparent 72%);
+  animation:spark .8s ease-out forwards;
+}
+@keyframes spark{
+  to{transform:translate(var(--x),var(--y)) scale(.1);opacity:0}
+}
+.cover{
+  padding:0;
+  background:#2b1710;
+}
+.cover .spread{
+  width:100%;
+  min-height:100vh;
+  padding:0;
+  position:relative;
+  isolation:isolate;
+  display:flex;
+  align-items:flex-end;
+}
+.cover-photo{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 25%;
+  z-index:-2;
+}
+.cover .spread::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(36,18,10,.82),rgba(36,18,10,.36) 55%,rgba(255,248,237,.16)),
+    linear-gradient(0deg,rgba(36,18,10,.76),transparent 52%);
+  z-index:-1;
+}
+.masthead{
+  width:min(850px,92vw);
+  padding:0 0 12vh 7vw;
+}
+.issue-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:17px 0 22px;
+}
+.chip{
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,248,237,.18);
+  border:1px solid rgba(255,248,237,.38);
+  color:#fffaf1;
+  font-size:.78rem;
+  font-weight:800;
+}
+.masthead p{
+  width:min(650px,100%);
+  margin:18px 0;
+  color:#fff6e8;
+  font-weight:600;
+}
+.two-col{grid-template-columns:1fr 1fr}
+.feature-photo{
+  min-height:620px;
+  border-radius:8px;
+  overflow:hidden;
+  border:1px solid rgba(255,248,237,.42);
+  box-shadow:0 22px 60px rgba(36,19,12,.3);
+}
+.feature-photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.article{
+  padding:34px;
+}
+.article p{margin-top:16px}
+.pullquote{
+  margin-top:20px;
+  padding:18px 20px;
+  border-left:5px solid var(--bronze);
+  background:rgba(255,250,241,.62);
+  color:#4a2a1e;
+  font-family:var(--title);
+  font-size:1.55rem;
+  line-height:1.25;
+}
+.coverline-grid{grid-template-columns:repeat(3,1fr);align-items:stretch}
+.coverline-head{grid-column:1/-1;text-align:center;width:min(850px,100%);margin:0 auto}
+.coverline{
+  min-height:265px;
+  padding:26px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  color:var(--cream);
+  background:rgba(255,248,237,.16);
+  border:1px solid rgba(255,248,237,.32);
+  border-radius:8px;
+  box-shadow:0 18px 44px rgba(36,19,12,.22);
+}
+.coverline .num{font-family:var(--title);font-size:3.7rem;color:rgba(244,212,138,.78);line-height:.9}
+.long-message .spread{align-items:start}
+.message-shell{
+  width:min(980px,100%);
+  margin:0 auto;
+  padding:36px;
+}
+.message-shell h2{color:#3c2116}
+.message-shell p{margin-top:17px;font-size:1.02rem}
+.gif-wrap{
+  margin:28px auto 0;
+  width:min(520px,94%);
+  border-radius:8px;
+  overflow:hidden;
+  border:8px solid rgba(255,248,237,.72);
+  box-shadow:0 18px 45px rgba(36,19,12,.2);
+}
+.moving-gallery .spread{align-items:start}
+.gallery-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:24px;
+}
+.gallery-head p{width:min(430px,100%);color:#fff6e8}
+.film-window{
+  width:100%;
+  min-height:clamp(500px,62vh,680px);
+  overflow:hidden;
+  border-radius:28px;
+  padding:28px 0;
+  background:linear-gradient(135deg,rgba(255,248,237,.78),rgba(210,177,135,.76));
+  border:1px solid rgba(255,248,237,.58);
+  box-shadow:0 24px 70px rgba(36,19,12,.25);
+  mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+}
+.film-track{
+  --tile-w:clamp(150px,15vw,220px);
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+  width:max-content;
+  min-width:118%;
+  padding:0 24px;
+  margin-left:-7%;
+  transform:rotate(-7deg);
+}
+.film-column{
+  width:var(--tile-w);
+  flex:0 0 var(--tile-w);
+  overflow:visible;
+}
+.film-column:nth-child(even){margin-top:-105px}
+.film-column:nth-child(3n){margin-top:58px}
+.column-loop{
+  display:flex;
+  flex-direction:column;
+  animation:filmMove 40.5s linear infinite;
+}
+.film-column:nth-child(even) .column-loop{animation-delay:-12s}
+.film-column:nth-child(3n) .column-loop{animation-delay:-22s}
+.column-set{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+@keyframes filmMove{
+  to{transform:translateY(-50%)}
+}
+.film-card{
+  width:var(--tile-w);
+  height:clamp(220px,23vw,340px);
+  flex:0 0 auto;
+  overflow:hidden;
+  border-radius:18px;
+  background:#fffaf1;
+  box-shadow:0 18px 40px rgba(36,19,12,.25);
+}
+.film-card.tall{height:clamp(300px,31vw,460px)}
+.film-card.wide{height:clamp(205px,22vw,320px)}
+.film-card.short{height:clamp(190px,20vw,290px)}
+.film-card img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center top;
+  background:linear-gradient(135deg,#fffaf1,#dfc7a9);
+}
+.support-grid{grid-template-columns:.78fr 1.22fr}
+.support-images{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+}
+.support-images figure{
+  padding:10px;
+  background:rgba(255,248,237,.82);
+  border-radius:8px;
+  box-shadow:0 18px 40px rgba(36,19,12,.18);
+}
+.support-images img{
+  width:100%;
+  max-height:250px;
+  object-fit:contain;
+  border-radius:6px;
+  background:#fffaf1;
+}
+.note-grid{grid-template-columns:repeat(2,1fr);align-items:stretch}
+.note{
+  min-height:245px;
+  padding:28px;
+  color:var(--ink);
+  background:rgba(255,248,237,.76);
+  border-radius:8px;
+  border:1px solid rgba(255,248,237,.46);
+  box-shadow:0 18px 44px rgba(36,19,12,.2);
+}
+.note h3{color:#4a2a1e;margin-bottom:12px}
+.image-strip{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-top:22px;
+}
+.image-strip img{
+  height:190px;
+  width:100%;
+  object-fit:contain;
+  object-position:center top;
+  background:rgba(255,250,241,.72);
+  border-radius:8px;
+  border:5px solid rgba(255,248,237,.7);
+  box-shadow:0 14px 32px rgba(36,19,12,.2);
+}
+.prayer{
+  background:
+    radial-gradient(circle at 18% 18%,rgba(255,248,237,.5),transparent 28%),
+    linear-gradient(135deg,#fff8ed 0%,#d7b680 45%,#4a2a1e 100%);
+}
+.prayer-card{
+  width:min(900px,100%);
+  margin:auto;
+  padding:38px;
+}
+.prayer-card h2{color:#3b2117}
+.prayer-card p{margin-top:17px;font-size:1.05rem}
+.fifty-grid{grid-template-columns:1.08fr .92fr}
+.number-50{
+  font-family:var(--title);
+  font-size:clamp(9rem,24vw,19rem);
+  line-height:.72;
+  color:transparent;
+  -webkit-text-stroke:2px rgba(255,248,237,.82);
+  text-shadow:0 20px 60px rgba(36,19,12,.28);
+}
+.timeline{
+  display:grid;
+  gap:14px;
+}
+.timeline div{
+  padding:18px;
+  border-radius:8px;
+  background:rgba(255,248,237,.18);
+  border:1px solid rgba(255,248,237,.32);
+}
+.timeline strong{display:block;color:var(--gold);margin-bottom:6px}
+.final .spread{text-align:center;width:min(900px,100%)}
+.final-card{
+  padding:38px;
+}
+.big-love{
+  margin:12px 0;
+  font-family:var(--title);
+  font-size:clamp(3.2rem,9vw,8rem);
+  color:#4a2a1e;
+  line-height:.9;
+}
+.final-card img{
+  width:min(360px,90%);
+  margin:0 auto 24px;
+  border-radius:8px;
+  border:7px solid rgba(255,248,237,.84);
+}
+@media (max-width:860px){
+  html,body{overflow:hidden}
+  .page{padding:18px}
+  .spread{min-height:calc(100vh - 36px);gap:18px;padding-bottom:78px}
+  .two-col,.coverline-grid,.support-grid,.note-grid,.fifty-grid{grid-template-columns:1fr}
+  .coverline-head{text-align:left}
+  .masthead{padding:0 18px 13vh}
+  .cover-photo{object-position:center top}
+  .feature-photo{min-height:420px}
+  .article,.message-shell,.prayer-card,.final-card{padding:24px}
+  .coverline{min-height:210px}
+  .gallery-head{display:block}
+  .gallery-head p{margin-top:10px}
+  .film-window{min-height:520px;border-radius:20px}
+  .film-track{
+    --tile-w:150px;
+    gap:14px;
+  }
+  .column-set{gap:14px}
+  .image-strip{grid-template-columns:repeat(2,1fr)}
+  .image-strip img{height:160px}
+  .support-images{grid-template-columns:1fr}
+  .nav{justify-content:flex-start}
+}
+@media (max-width:520px){
+  .page{padding:14px}
+  .cover{padding:0}
+  .masthead p{font-size:.94rem}
+  .chip{font-size:.72rem}
+  .nav button{width:34px;height:34px}
+  .nav .wide{width:42px;height:42px;padding:0}
+  .music{top:10px;right:10px}
+  .film-window{min-height:460px}
+  .film-track{
+    --tile-w:132px;
+    gap:12px;
+  }
+  .column-set{gap:12px}
+  .image-strip img{height:135px}
+}
+</style>
+</head>
+<body>
+<audio id="bgMusic" src="song.mpeg" loop preload="auto"></audio>
+<button class="music" id="musicBtn" aria-label="Play music">♪</button>
+<div class="emoji-layer" id="emojiLayer"></div>
+<div class="sparkle-layer" id="sparkleLayer"></div>
+<div class="love-marquee" id="loveMarquee">I love you so much dad</div>
+
+<section class="page cover active" id="cover">
+  <div class="spread">
+    <img class="cover-photo" src="dad2.jpeg" alt="Sir on the magazine cover">
+    <div class="masthead">
+      <div class="kicker">Father's Day Special Edition</div>
+      <h1>Sir, My First King</h1>
+      <div class="issue-row">
+        <span class="chip">The man I adore most</span>
+        <span class="chip">Best dad ever</span>
+        <span class="chip">Happy father's day Baba Precious</span>
+      </div>
+      <p>For the man who made his daughter feel like daddy's little princess, even while teaching her strength, courage, grace, and big dreams. Sir, today this whole magazine belongs to you.</p>
+      <button class="btn" onclick="nextPage()">Open the magazine</button>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="letter">
+  <div class="spread two-col">
+    <div class="feature-photo"><img src="dad3.jpeg" alt="A cherished photo of Sir"></div>
+    <article class="article glass">
+      <div class="kicker" style="color:#7b4c2f">Editor's Letter</div>
+      <h2>Dear Sir, this one is yours.</h2>
+      <p>I wanted this to feel like a real magazine because you deserve more than a simple message. You deserve pages. You deserve headlines. You deserve gold letters, warm colors, beautiful pictures, and a whole issue dedicated to the man you are.</p>
+      <p>You have been the best dad anyone could ever ask for. Not perfect because no human being is, but present, trying, loving, providing, guiding, protecting, and standing firm even when life was asking so much from you.</p>
+      <p>I call you Sir because there is respect in that name, but there is also tenderness. It is my way of saying you are my authority, my shelter, my standard, my favorite man, and the first person who taught me what love should feel like.</p>
+      <div class="pullquote">Your effort has never been invisible to me. I have seen it. I have felt it. I carry it everywhere.</div>
+    </article>
+  </div>
+</section>
+
+<section class="page" id="king">
+  <div class="spread coverline-grid">
+    <div class="coverline-head">
+      <div class="kicker">Cover Story</div>
+      <h2>The making of my favorite man</h2>
+      <p>You are not just my dad. You are the quiet proof that love can work hard, sacrifice deeply, and still show up with strength.</p>
+    </div>
+    <article class="coverline">
+      <div class="num">01</div>
+      <h3>The Provider</h3>
+      <p>You worked for a good life for us even when it cost you comfort. I may not know every battle you fought, but I know I have lived inside the blessing of your sacrifice.</p>
+    </article>
+    <article class="coverline">
+      <div class="num">02</div>
+      <h3>The Protector</h3>
+      <p>You made me feel like I had a strong wall around me. As daddy's little princess, I never had to question whether your love was standing close.</p>
+    </article>
+    <article class="coverline">
+      <div class="num">03</div>
+      <h3>The Standard</h3>
+      <p>You taught me that love should be steady, support should be loud when needed, and a real man is measured by his heart, discipline, and care.</p>
+    </article>
+  </div>
+</section>
+
+<section class="page long-message" id="heart">
+  <div class="spread">
+    <article class="message-shell glass">
+      <div class="kicker" style="color:#7b4c2f">The Heartfelt Page</div>
+      <h2>For everything I sometimes do not say loudly enough.</h2>
+      <p>Sir, I hope you know that being your daughter is one of the greatest blessings of my life. I know children can grow up and forget how much their parents carried before they even understood the weight of life, but I do not want to forget. I do not want to act like the comfort I have known just appeared from nowhere. Behind so many of my peaceful days, there was you. Behind so many opportunities, there was you. Behind so many things I could enjoy without fear, there was you doing your best.</p>
+      <p>I have watched you try. I have watched you provide. I have watched you show love in ways that were practical, strong, protective, and real. Sometimes love is a hug, but sometimes love is waking up tired and still choosing your family. Sometimes love is saying yes when it would be easier to say no. Sometimes love is planning, paying, advising, correcting, checking in, and making sure your child has what she needs to face the world with confidence.</p>
+      <p>As your daughter, your little princess, I know I have received a very special kind of love from you. You have poured into me, believed in me, corrected me, defended me, supported me, and made me feel like I matter. You have given me memories that I will keep even when I am older, and you have given me a foundation that I pray I never take for granted.</p>
+      <p>I love you so much, Sir. I love you for the sacrifices I saw and for the ones I may never fully know. I love you for the way you have tried to give us a good life. I love you for standing in your role as my dad with honor. I love you for being a man I can respect deeply and adore completely.</p>
+      <p>One of my biggest prayers is that I make you proud. Not just proud in the loud, public way, but proud in the quiet way too. Proud when you think of the woman I am becoming. Proud when you see my choices. Proud when you see that your teachings did not fall on empty ground. Proud because your love produced something good in me.</p>
+      <p>If I could give you a crown in real life, I would. If I could gather every flower in the world and place them at your feet, I would. For now, I made you this, with my whole heart, because you deserve to feel celebrated, honored, and loved.</p>
+      <div class="gif-wrap"><img src="bestieeee.gif" alt="A warm celebratory gif"></div>
+    </article>
+  </div>
+</section>
+
+<section class="page moving-gallery" id="gallery">
+  <div class="spread">
+    <div class="gallery-head">
+      <div>
+        <div class="kicker">Favorite Memories Film</div>
+        <h2>My favorite frames of you, Sir</h2>
+      </div>
+      <p>Every frame reminds me why I am so proud to be your daughter. One day very soon, Sir, I pray I make you even prouder than you have ever imagined.</p>
+    </div>
+    <div class="film-window">
+      <div class="film-track">
+        <div class="film-column">
+          <div class="column-loop">
+            <div class="column-set">
+              <figure class="film-card wide"><img src="dad2.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card tall"><img src="dad8.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card"><img src="dad4.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card short"><img src="dad10.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card tall"><img src="dad6.jpeg" alt="Sir memory"></figure>
+            </div>
+            <div class="column-set" aria-hidden="true">
+              <figure class="film-card wide"><img src="dad2.jpeg" alt=""></figure>
+              <figure class="film-card tall"><img src="dad8.jpeg" alt=""></figure>
+              <figure class="film-card"><img src="dad4.jpeg" alt=""></figure>
+              <figure class="film-card short"><img src="dad10.jpeg" alt=""></figure>
+              <figure class="film-card tall"><img src="dad6.jpeg" alt=""></figure>
+            </div>
+          </div>
+        </div>
+        <div class="film-column">
+          <div class="column-loop">
+            <div class="column-set">
+              <figure class="film-card tall"><img src="dad3.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card short"><img src="dad9.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card"><img src="dad5.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card tall"><img src="dad11.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card wide"><img src="dad7.jpeg" alt="Sir memory"></figure>
+            </div>
+            <div class="column-set" aria-hidden="true">
+              <figure class="film-card tall"><img src="dad3.jpeg" alt=""></figure>
+              <figure class="film-card short"><img src="dad9.jpeg" alt=""></figure>
+              <figure class="film-card"><img src="dad5.jpeg" alt=""></figure>
+              <figure class="film-card tall"><img src="dad11.jpeg" alt=""></figure>
+              <figure class="film-card wide"><img src="dad7.jpeg" alt=""></figure>
+            </div>
+          </div>
+        </div>
+        <div class="film-column">
+          <div class="column-loop">
+            <div class="column-set">
+              <figure class="film-card"><img src="dad13.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card tall"><img src="dad6.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card wide"><img src="dad2.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card"><img src="dad8.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card tall"><img src="dad4.jpeg" alt="Sir memory"></figure>
+            </div>
+            <div class="column-set" aria-hidden="true">
+              <figure class="film-card"><img src="dad13.jpeg" alt=""></figure>
+              <figure class="film-card tall"><img src="dad6.jpeg" alt=""></figure>
+              <figure class="film-card wide"><img src="dad2.jpeg" alt=""></figure>
+              <figure class="film-card"><img src="dad8.jpeg" alt=""></figure>
+              <figure class="film-card tall"><img src="dad4.jpeg" alt=""></figure>
+            </div>
+          </div>
+        </div>
+        <div class="film-column">
+          <div class="column-loop">
+            <div class="column-set">
+              <figure class="film-card short"><img src="dad5.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card tall"><img src="dad10.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card"><img src="dad7.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card wide"><img src="dad3.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card tall"><img src="dad9.jpeg" alt="Sir memory"></figure>
+            </div>
+            <div class="column-set" aria-hidden="true">
+              <figure class="film-card short"><img src="dad5.jpeg" alt=""></figure>
+              <figure class="film-card tall"><img src="dad10.jpeg" alt=""></figure>
+              <figure class="film-card"><img src="dad7.jpeg" alt=""></figure>
+              <figure class="film-card wide"><img src="dad3.jpeg" alt=""></figure>
+              <figure class="film-card tall"><img src="dad9.jpeg" alt=""></figure>
+            </div>
+          </div>
+        </div>
+        <div class="film-column">
+          <div class="column-loop">
+            <div class="column-set">
+              <figure class="film-card tall"><img src="dad11.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card"><img src="dad2.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card short"><img src="dad6.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card tall"><img src="dad13.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card wide"><img src="dad8.jpeg" alt="Sir memory"></figure>
+            </div>
+            <div class="column-set" aria-hidden="true">
+              <figure class="film-card tall"><img src="dad11.jpeg" alt=""></figure>
+              <figure class="film-card"><img src="dad2.jpeg" alt=""></figure>
+              <figure class="film-card short"><img src="dad6.jpeg" alt=""></figure>
+              <figure class="film-card tall"><img src="dad13.jpeg" alt=""></figure>
+              <figure class="film-card wide"><img src="dad8.jpeg" alt=""></figure>
+            </div>
+          </div>
+        </div>
+        <div class="film-column">
+          <div class="column-loop">
+            <div class="column-set">
+              <figure class="film-card"><img src="dad4.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card tall"><img src="dad7.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card short"><img src="dad3.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card tall"><img src="dad5.jpeg" alt="Sir memory"></figure>
+              <figure class="film-card wide"><img src="dad10.jpeg" alt="Sir memory"></figure>
+            </div>
+            <div class="column-set" aria-hidden="true">
+              <figure class="film-card"><img src="dad4.jpeg" alt=""></figure>
+              <figure class="film-card tall"><img src="dad7.jpeg" alt=""></figure>
+              <figure class="film-card short"><img src="dad3.jpeg" alt=""></figure>
+              <figure class="film-card tall"><img src="dad5.jpeg" alt=""></figure>
+              <figure class="film-card wide"><img src="dad10.jpeg" alt=""></figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="support">
+  <div class="spread support-grid">
+    <article class="article glass">
+      <div class="kicker" style="color:#7b4c2f">Best Supporter Award</div>
+      <h2>Thank you for being the best supporter I ever asked for.</h2>
+      <p>Sir, thank you for showing up for me in ways that made me feel backed, chosen, and believed in. Thank you for not only loving me quietly, but for supporting me in ways I could see, remember, and hold onto.</p>
+      <p>These pictures are evidence. Evidence that you care. Evidence that you stand by me. Evidence that when I needed someone in my corner, I had you. You may think some of these moments are small, but to me they are not small at all. They are reminders that I have a father who is present, proud, and willing to support his daughter.</p>
+      <p>I pray I become the kind of person who makes all your support feel worth it. I pray I make you smile and say, "that is my daughter," with peace in your heart.</p>
+    </article>
+    <div class="support-images">
+      <figure><img src="part1.jpeg" alt="Evidence of Sir supporting his daughter"></figure>
+      <figure><img src="part2.jpeg" alt="Evidence of Sir supporting his daughter"></figure>
+      <figure><img src="part3.jpeg" alt="Evidence of Sir supporting his daughter"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="details">
+  <div class="spread">
+    <div>
+      <div class="kicker">Little Things I Treasure</div>
+      <h2>The details that made me feel loved</h2>
+    </div>
+    <div class="note-grid">
+      <article class="note">
+        <h3>Your effort</h3>
+        <p>Every time you chose responsibility, every time you provided, every time you put family first, you were building a life I could feel safe inside. I see that now more than ever.</p>
+      </article>
+      <article class="note">
+        <h3>Your guidance</h3>
+        <p>You corrected me because you wanted better for me. You advised me because you cared about where I was going. You helped shape my heart, my confidence, and my standards.</p>
+      </article>
+      <article class="note">
+        <h3>Your presence</h3>
+        <p>There are moments when a father being there says more than a thousand words. Thank you for being there, Sir. Thank you for making me feel like I mattered.</p>
+      </article>
+      <article class="note">
+        <h3>Your love</h3>
+        <p>Your love has been one of my first homes. Strong, warm, protective, and real. I pray you feel even a fraction of that love coming back to you today.</p>
+      </article>
+    </div>
+    <div class="image-strip">
+      <img src="dad4.jpeg" alt="Sir memory">
+      <img src="dad5.jpeg" alt="Sir memory">
+      <img src="dad6.jpeg" alt="Sir memory">
+      <img src="dad7.jpeg" alt="Sir memory">
+    </div>
+  </div>
+</section>
+
+<section class="page prayer" id="prayer">
+  <div class="spread">
+    <article class="prayer-card glass">
+      <div class="kicker" style="color:#7b4c2f">My Prayer For Him</div>
+      <h2>A golden blessing over my Sir.</h2>
+      <p>Lord, thank You for my father. Thank You for the years You have carried him, protected him, strengthened him, and helped him become the man I know and love. Thank You for his life, his heart, his sacrifices, his discipline, and the love he has poured into our family.</p>
+      <p>As he steps closer to 50 in a month's time, I pray that this new chapter meets him with peace, health, joy, favor, and rest. May he never labor without reward. May his body be strong, his mind be calm, his spirit be lifted, and his heart be full.</p>
+      <p>May every sacrifice he has made return to him as blessing. May he live long enough to enjoy the good things he has worked for. May he see his daughter become everything he prayed she would become. May he be proud, not only because of achievements, but because he can see that his love raised a grateful heart.</p>
+      <p>Please protect him from harm, surround him with good people, answer the prayers he keeps quietly, and give him moments that remind him he is deeply loved. Amen.</p>
+    </article>
+  </div>
+</section>
+
+<section class="page" id="fifty">
+  <div class="spread fifty-grid">
+    <div>
+      <div class="kicker">Almost Fifty</div>
+      <div class="number-50">50</div>
+      <h2>A golden chapter is coming.</h2>
+    </div>
+    <div class="timeline">
+      <div><strong>For the years behind you</strong><p>May you look back and see strength, grace, battles survived, doors opened, and a family that loves you deeply.</p></div>
+      <div><strong>For this season now</strong><p>May you feel celebrated before the birthday even arrives. May this Father's Day remind you that your life has touched mine in a way nothing can erase.</p></div>
+      <div><strong>For the years ahead</strong><p>May they be softer, richer, healthier, calmer, and filled with the kind of joy that makes all the hard work feel worth it.</p></div>
+      <div><strong>For your daughter</strong><p>May I keep becoming a reason for your smile. May I honor your name with the woman I become.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="legacy">
+  <div class="spread two-col">
+    <article class="article glass">
+      <div class="kicker" style="color:#7b4c2f">The Legacy Page</div>
+      <h2>What you have already given me</h2>
+      <p>You have given me more than things. You have given me a picture of dedication. You have given me standards. You have given me courage. You have given me memories that make me smile and lessons that stay with me even when you are not in the room.</p>
+      <p>I hope you never think your work as a father disappeared into ordinary days. It did not. It became my confidence. It became my sense of safety. It became part of how I love, how I dream, and how I believe I deserve to be treated.</p>
+      <p>Sir, you are hands down the man I adore most in my entire life. There is no competition. You have my respect, my love, my gratitude, and my prayers.</p>
+    </article>
+    <div class="feature-photo"><img src="dad10.jpeg" alt="Sir portrait"></div>
+  </div>
+</section>
+
+<section class="page final" id="final">
+  <div class="spread">
+    <article class="final-card glass">
+      <img src="dad11.jpeg" alt="Sir final portrait">
+      <div class="kicker" style="color:#7b4c2f">Back Cover</div>
+      <h2>One last headline</h2>
+      <div class="big-love">I love you, Sir.</div>
+      <p>Happy Father's Day to the best dad I could ever ask for. Thank you for loving me, raising me, supporting me, protecting me, and giving me a good life. Your flowers are here, your daughter sees you, and your place in my heart is forever.</p>
+      <button class="btn" style="margin-top:24px" onclick="goToPage(0)">Read again</button>
+    </article>
+  </div>
+</section>
+
+<div class="nav" aria-label="Magazine navigation">
+  <button class="wide" onclick="prevPage()" aria-label="Previous page">‹</button>
+  <button class="wide" onclick="nextPage()" aria-label="Next page">›</button>
+</div>
+
+<script>
+const pages=[...document.querySelectorAll(".page")];
+const navButtons=[...document.querySelectorAll(".nav button:not(.wide)")];
+const music=document.getElementById("bgMusic");
+const musicBtn=document.getElementById("musicBtn");
+const loveMarquee=document.getElementById("loveMarquee");
+let current=0;
+let musicStarted=false;
+
+music.volume=.10;
+
+function goToPage(index){
+  current=(index+pages.length)%pages.length;
+  pages.forEach((page,i)=>page.classList.toggle("active",i===current));
+  navButtons.forEach((button,i)=>button.classList.toggle("active",i===current));
+  const active=pages[current];
+  if(active){active.scrollTop=0}
+}
+
+function nextPage(){goToPage(current+1)}
+function prevPage(){goToPage(current-1)}
+
+document.addEventListener("keydown",(event)=>{
+  if(event.key==="ArrowRight"){nextPage()}
+  if(event.key==="ArrowLeft"){prevPage()}
+});
+
+async function startMusic(){
+  if(musicStarted){return}
+  try{
+    await music.play();
+    musicStarted=true;
+    musicBtn.textContent="♫";
+  }catch(error){
+    musicBtn.textContent="♪";
+  }
+}
+
+musicBtn.addEventListener("click",(event)=>{
+  event.stopPropagation();
+  if(music.paused){
+    music.play();
+    musicStarted=true;
+    musicBtn.textContent="♫";
+  }else{
+    music.pause();
+    musicBtn.textContent="♪";
+  }
+});
+
+function makeFloatingEmojis(){
+  const layer=document.getElementById("emojiLayer");
+  const emojis=["👑","✨","🤎","🏆","🥂","💛","🌟","💐","🤍","💎"];
+  for(let i=0;i<38;i++){
+    const span=document.createElement("span");
+    span.className="float-emoji";
+    span.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+    span.style.left=Math.random()*100+"%";
+    span.style.animationDuration=8+Math.random()*10+"s";
+    span.style.animationDelay=Math.random()*-14+"s";
+    span.style.fontSize=18+Math.random()*22+"px";
+    layer.appendChild(span);
+  }
+}
+
+function showLoveMarquee(){
+  loveMarquee.classList.remove("show");
+  void loveMarquee.offsetWidth;
+  loveMarquee.classList.add("show");
+  setTimeout(()=>loveMarquee.classList.remove("show"),9200);
+}
+
+function sparkleAt(x,y){
+  startMusic();
+  const layer=document.getElementById("sparkleLayer");
+  for(let i=0;i<14;i++){
+    const dot=document.createElement("span");
+    dot.className="sparkle";
+    dot.style.left=x+"px";
+    dot.style.top=y+"px";
+    dot.style.setProperty("--x",(Math.random()*120-60)+"px");
+    dot.style.setProperty("--y",(Math.random()*120-60)+"px");
+    layer.appendChild(dot);
+    setTimeout(()=>dot.remove(),850);
+  }
+}
+
+document.addEventListener("pointerdown",(event)=>{
+  if(event.target.closest(".music")){return}
+  sparkleAt(event.clientX,event.clientY);
+});
+
+makeFloatingEmojis();
+setTimeout(showLoveMarquee,60000);
+setInterval(showLoveMarquee,60000);
+goToPage(0);
+</script>
+</body>
+</html>
