@@ -86,7 +86,7 @@ function Home() {
                     className="h-[480px] w-full object-cover sm:h-[560px]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-foreground/55 via-transparent to-transparent" />
-                  <div className="absolute bottom-5 left-5 right-5 rounded-2xl bg-white/85 p-4 backdrop-blur">
+                  <div className="absolute bottom-5 left-5 right-5 rounded-2xl bg-white/85 p-4 text-center backdrop-blur">
                     <p className="font-hand text-2xl leading-tight">
                       my first hero. my greatest teacher.
                     </p>
@@ -99,7 +99,7 @@ function Home() {
                   <span className="font-display text-lg font-semibold text-white">1976 — 2026</span>
                 </div>
                 <div
-                  className="absolute -bottom-5 -left-4 -rotate-6 rounded-2xl bg-white px-5 py-2.5 shadow-soft-mint"
+                  className="absolute -bottom-7 -left-5 -rotate-6 rounded-2xl bg-white px-5 py-2.5 shadow-soft-mint"
                   style={{ transform: "translateZ(45px) rotate(-6deg)" }}
                 >
                   <span className="font-hand text-2xl">50 & still my safest place</span>
