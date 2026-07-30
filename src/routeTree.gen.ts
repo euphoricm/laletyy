@@ -10,33 +10,154 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FiftyRouteImport } from './routes/fifty'
+import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as HeroRouteImport } from './routes/hero'
+import { Route as HisWordsRouteImport } from './routes/his-words'
+import { Route as LetterRouteImport } from './routes/letter'
+import { Route as MyReplyRouteImport } from './routes/my-reply'
+import { Route as PrayersRouteImport } from './routes/prayers'
+import { Route as PromisesRouteImport } from './routes/promises'
+import { Route as WishesRouteImport } from './routes/wishes'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FiftyRoute = FiftyRouteImport.update({
+  id: '/fifty',
+  path: '/fifty',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HeroRoute = HeroRouteImport.update({
+  id: '/hero',
+  path: '/hero',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HisWordsRoute = HisWordsRouteImport.update({
+  id: '/his-words',
+  path: '/his-words',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LetterRoute = LetterRouteImport.update({
+  id: '/letter',
+  path: '/letter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyReplyRoute = MyReplyRouteImport.update({
+  id: '/my-reply',
+  path: '/my-reply',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrayersRoute = PrayersRouteImport.update({
+  id: '/prayers',
+  path: '/prayers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PromisesRoute = PromisesRouteImport.update({
+  id: '/promises',
+  path: '/promises',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WishesRoute = WishesRouteImport.update({
+  id: '/wishes',
+  path: '/wishes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/fifty': typeof FiftyRoute
+  '/gallery': typeof GalleryRoute
+  '/hero': typeof HeroRoute
+  '/his-words': typeof HisWordsRoute
+  '/letter': typeof LetterRoute
+  '/my-reply': typeof MyReplyRoute
+  '/prayers': typeof PrayersRoute
+  '/promises': typeof PromisesRoute
+  '/wishes': typeof WishesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/fifty': typeof FiftyRoute
+  '/gallery': typeof GalleryRoute
+  '/hero': typeof HeroRoute
+  '/his-words': typeof HisWordsRoute
+  '/letter': typeof LetterRoute
+  '/my-reply': typeof MyReplyRoute
+  '/prayers': typeof PrayersRoute
+  '/promises': typeof PromisesRoute
+  '/wishes': typeof WishesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/fifty': typeof FiftyRoute
+  '/gallery': typeof GalleryRoute
+  '/hero': typeof HeroRoute
+  '/his-words': typeof HisWordsRoute
+  '/letter': typeof LetterRoute
+  '/my-reply': typeof MyReplyRoute
+  '/prayers': typeof PrayersRoute
+  '/promises': typeof PromisesRoute
+  '/wishes': typeof WishesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/fifty'
+    | '/gallery'
+    | '/hero'
+    | '/his-words'
+    | '/letter'
+    | '/my-reply'
+    | '/prayers'
+    | '/promises'
+    | '/wishes'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/fifty'
+    | '/gallery'
+    | '/hero'
+    | '/his-words'
+    | '/letter'
+    | '/my-reply'
+    | '/prayers'
+    | '/promises'
+    | '/wishes'
+  id:
+    | '__root__'
+    | '/'
+    | '/fifty'
+    | '/gallery'
+    | '/hero'
+    | '/his-words'
+    | '/letter'
+    | '/my-reply'
+    | '/prayers'
+    | '/promises'
+    | '/wishes'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FiftyRoute: typeof FiftyRoute
+  GalleryRoute: typeof GalleryRoute
+  HeroRoute: typeof HeroRoute
+  HisWordsRoute: typeof HisWordsRoute
+  LetterRoute: typeof LetterRoute
+  MyReplyRoute: typeof MyReplyRoute
+  PrayersRoute: typeof PrayersRoute
+  PromisesRoute: typeof PromisesRoute
+  WishesRoute: typeof WishesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +169,84 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/fifty': {
+      id: '/fifty'
+      path: '/fifty'
+      fullPath: '/fifty'
+      preLoaderRoute: typeof FiftyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hero': {
+      id: '/hero'
+      path: '/hero'
+      fullPath: '/hero'
+      preLoaderRoute: typeof HeroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/his-words': {
+      id: '/his-words'
+      path: '/his-words'
+      fullPath: '/his-words'
+      preLoaderRoute: typeof HisWordsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/letter': {
+      id: '/letter'
+      path: '/letter'
+      fullPath: '/letter'
+      preLoaderRoute: typeof LetterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-reply': {
+      id: '/my-reply'
+      path: '/my-reply'
+      fullPath: '/my-reply'
+      preLoaderRoute: typeof MyReplyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/prayers': {
+      id: '/prayers'
+      path: '/prayers'
+      fullPath: '/prayers'
+      preLoaderRoute: typeof PrayersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/promises': {
+      id: '/promises'
+      path: '/promises'
+      fullPath: '/promises'
+      preLoaderRoute: typeof PromisesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wishes': {
+      id: '/wishes'
+      path: '/wishes'
+      fullPath: '/wishes'
+      preLoaderRoute: typeof WishesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FiftyRoute: FiftyRoute,
+  GalleryRoute: GalleryRoute,
+  HeroRoute: HeroRoute,
+  HisWordsRoute: HisWordsRoute,
+  LetterRoute: LetterRoute,
+  MyReplyRoute: MyReplyRoute,
+  PrayersRoute: PrayersRoute,
+  PromisesRoute: PromisesRoute,
+  WishesRoute: WishesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

@@ -4,20 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
- */
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -25,7 +11,6 @@
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -45,100 +30,227 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+  --color-mint: var(--mint);
+  --color-mint-soft: var(--mint-soft);
+  --color-mint-deep: var(--mint-deep);
+  --color-lavender: var(--lavender);
+  --color-lavender-soft: var(--lavender-soft);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-ink: var(--ink);
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-hand: "Caveat", cursive;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
-}
+  --radius: 1rem;
 
-.dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  /* Mint Lagoon palette + jubilee gold */
+  --mint: oklch(0.82 0.09 180);
+  --mint-soft: oklch(0.96 0.03 175);
+  --mint-deep: oklch(0.55 0.09 185);
+  --lavender: oklch(0.82 0.07 285);
+  --lavender-soft: oklch(0.94 0.04 300);
+  --gold: oklch(0.79 0.12 85);
+  --gold-soft: oklch(0.92 0.07 92);
+  --ink: oklch(0.24 0.03 200);
+
+  --background: var(--mint-soft);
+  --foreground: var(--ink);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--ink);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--ink);
+  --primary: var(--mint-deep);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.98 0.01 180);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.94 0.02 180);
+  --muted-foreground: oklch(0.45 0.03 200);
+  --accent: var(--mint);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.63 0.22 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.88 0.03 180);
+  --input: oklch(0.9 0.02 180);
+  --ring: var(--mint-deep);
+
+  --gradient-mint: linear-gradient(135deg, #6dd5c4 0%, #dff6f0 100%);
+  --gradient-mint-rich: radial-gradient(circle at 20% 20%, #6dd5c4 0%, #a8e5da 40%, #dff6f0 100%);
+  --gradient-gold: linear-gradient(135deg, #e8c37a 0%, #f7e6bd 45%, #d4a852 100%);
+  --gradient-lavender: linear-gradient(135deg, #b8c0ff 0%, #e7d8ff 100%);
+  --gradient-patchwork:
+    radial-gradient(60% 45% at 85% 8%, rgba(184, 192, 255, 0.5), transparent 60%),
+    radial-gradient(45% 40% at 8% 88%, rgba(232, 195, 122, 0.4), transparent 65%),
+    radial-gradient(35% 30% at 70% 78%, rgba(231, 216, 255, 0.45), transparent 70%),
+    linear-gradient(135deg, #dff6f0 0%, #a8e5da 55%, #6dd5c4 100%);
+  --shadow-soft: 0 20px 50px -20px color-mix(in oklab, #6dd5c4 45%, transparent);
+  --shadow-gold: 0 22px 55px -22px color-mix(in oklab, #d4a852 60%, transparent);
+  --shadow-3d:
+    0 2px 0 rgba(255, 255, 255, 0.85) inset, 0 -18px 40px -28px rgba(20, 60, 55, 0.55),
+    0 34px 70px -34px rgba(20, 60, 55, 0.55);
 }
 
 @layer base {
   * {
     border-color: var(--color-border);
   }
-
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+  html {
+    scroll-behavior: smooth;
   }
+  body {
+    background: var(--gradient-patchwork);
+    background-attachment: fixed;
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility bg-mint-gradient {
+  background: var(--gradient-mint);
+}
+@utility bg-mint-rich {
+  background: var(--gradient-mint-rich);
+}
+@utility bg-gold-gradient {
+  background: var(--gradient-gold);
+}
+@utility bg-lavender-gradient {
+  background: var(--gradient-lavender);
+}
+@utility bg-lagoon-patchwork {
+  background: var(--gradient-patchwork);
+}
+@utility shadow-soft-mint {
+  box-shadow: var(--shadow-soft);
+}
+@utility shadow-soft-gold {
+  box-shadow: var(--shadow-gold);
+}
+@utility shadow-3d {
+  box-shadow: var(--shadow-3d);
+}
+@utility font-display {
+  font-family: var(--font-display);
+}
+@utility font-hand {
+  font-family: var(--font-hand);
+}
+
+/* 3D helpers */
+@utility scene-3d {
+  perspective: 1400px;
+  perspective-origin: 50% 40%;
+}
+@utility preserve-3d {
+  transform-style: preserve-3d;
+}
+@utility card-3d {
+  transform-style: preserve-3d;
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.6s ease;
+  will-change: transform;
+  &:hover {
+    transform: translateY(-10px) rotateX(6deg) rotateY(-6deg) scale(1.02);
+  }
+}
+@utility gold-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4a852, transparent);
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0) rotateZ(0deg);
+  }
+  50% {
+    transform: translateY(-16px) rotateZ(-1deg);
+  }
+}
+@keyframes tilt-idle {
+  0%,
+  100% {
+    transform: rotateY(-7deg) rotateX(4deg) translateZ(0);
+  }
+  50% {
+    transform: rotateY(7deg) rotateX(-3deg) translateZ(26px);
+  }
+}
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6);
+  }
+  15% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-140px) scale(1.15);
+  }
+}
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@utility animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+@utility animate-tilt-idle {
+  animation: tilt-idle 12s ease-in-out infinite;
+}
+@utility animate-fade-up {
+  animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@utility animate-rise {
+  animation: rise 9s linear infinite;
+}
+@utility animate-spin-slow {
+  animation: spin-slow 26s linear infinite;
+}
+@utility text-shimmer {
+  background: linear-gradient(90deg, #2a6f66, #6dd5c4, #d4a852, #b8c0ff, #2a6f66);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 8s linear infinite;
+}
+@utility text-gold {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
