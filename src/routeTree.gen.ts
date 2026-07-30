@@ -10,11 +10,29 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FiftyRouteImport } from './routes/fifty'
+import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as HeroRouteImport } from './routes/hero'
 import { Route as LetterRouteImport } from './routes/letter'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FiftyRoute = FiftyRouteImport.update({
+  id: '/fifty',
+  path: '/fifty',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HeroRoute = HeroRouteImport.update({
+  id: '/hero',
+  path: '/hero',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LetterRoute = LetterRouteImport.update({
@@ -25,27 +43,39 @@ const LetterRoute = LetterRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/fifty': typeof FiftyRoute
+  '/gallery': typeof GalleryRoute
+  '/hero': typeof HeroRoute
   '/letter': typeof LetterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/fifty': typeof FiftyRoute
+  '/gallery': typeof GalleryRoute
+  '/hero': typeof HeroRoute
   '/letter': typeof LetterRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/fifty': typeof FiftyRoute
+  '/gallery': typeof GalleryRoute
+  '/hero': typeof HeroRoute
   '/letter': typeof LetterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/letter'
+  fullPaths: '/' | '/fifty' | '/gallery' | '/hero' | '/letter'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/letter'
-  id: '__root__' | '/' | '/letter'
+  to: '/' | '/fifty' | '/gallery' | '/hero' | '/letter'
+  id: '__root__' | '/' | '/fifty' | '/gallery' | '/hero' | '/letter'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FiftyRoute: typeof FiftyRoute
+  GalleryRoute: typeof GalleryRoute
+  HeroRoute: typeof HeroRoute
   LetterRoute: typeof LetterRoute
 }
 
@@ -56,6 +86,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fifty': {
+      id: '/fifty'
+      path: '/fifty'
+      fullPath: '/fifty'
+      preLoaderRoute: typeof FiftyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hero': {
+      id: '/hero'
+      path: '/hero'
+      fullPath: '/hero'
+      preLoaderRoute: typeof HeroRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/letter': {
@@ -70,6 +121,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FiftyRoute: FiftyRoute,
+  GalleryRoute: GalleryRoute,
+  HeroRoute: HeroRoute,
   LetterRoute: LetterRoute,
 }
 export const routeTree = rootRouteImport
