@@ -46,15 +46,15 @@
 :root {
   --radius: 1rem;
 
-  /* Mint Lagoon palette + jubilee gold */
-  --mint: oklch(0.82 0.09 180);
-  --mint-soft: oklch(0.96 0.03 175);
-  --mint-deep: oklch(0.55 0.09 185);
-  --lavender: oklch(0.82 0.07 285);
-  --lavender-soft: oklch(0.94 0.04 300);
-  --gold: oklch(0.79 0.12 85);
-  --gold-soft: oklch(0.92 0.07 92);
-  --ink: oklch(0.24 0.03 200);
+  /* Laleti's periwinkle and lilac palette */
+  --mint: #b8c0ff;
+  --mint-soft: #f5f2ff;
+  --mint-deep: #6875d8;
+  --lavender: #b8c0ff;
+  --lavender-soft: #e7d8ff;
+  --gold: #9a79c9;
+  --gold-soft: #e7d8ff;
+  --ink: #292450;
 
   --background: var(--mint-soft);
   --foreground: var(--ink);
@@ -76,20 +76,20 @@
   --input: oklch(0.9 0.02 180);
   --ring: var(--mint-deep);
 
-  --gradient-mint: linear-gradient(135deg, #6dd5c4 0%, #dff6f0 100%);
-  --gradient-mint-rich: radial-gradient(circle at 20% 20%, #6dd5c4 0%, #a8e5da 40%, #dff6f0 100%);
-  --gradient-gold: linear-gradient(135deg, #e8c37a 0%, #f7e6bd 45%, #d4a852 100%);
+  --gradient-mint: linear-gradient(135deg, #b8c0ff 0%, #e7d8ff 100%);
+  --gradient-mint-rich: radial-gradient(circle at 20% 20%, #b8c0ff 0%, #d5c6ff 42%, #e7d8ff 100%);
+  --gradient-gold: linear-gradient(135deg, #8e8fe8 0%, #e7d8ff 48%, #a87acb 100%);
   --gradient-lavender: linear-gradient(135deg, #b8c0ff 0%, #e7d8ff 100%);
   --gradient-patchwork:
     radial-gradient(60% 45% at 85% 8%, rgba(184, 192, 255, 0.5), transparent 60%),
     radial-gradient(45% 40% at 8% 88%, rgba(232, 195, 122, 0.4), transparent 65%),
     radial-gradient(35% 30% at 70% 78%, rgba(231, 216, 255, 0.45), transparent 70%),
-    linear-gradient(135deg, #dff6f0 0%, #a8e5da 55%, #6dd5c4 100%);
-  --shadow-soft: 0 20px 50px -20px color-mix(in oklab, #6dd5c4 45%, transparent);
-  --shadow-gold: 0 22px 55px -22px color-mix(in oklab, #d4a852 60%, transparent);
+    linear-gradient(135deg, #f5f2ff 0%, #e7d8ff 55%, #b8c0ff 100%);
+  --shadow-soft: 0 20px 50px -20px color-mix(in oklab, #b8c0ff 55%, transparent);
+  --shadow-gold: 0 22px 55px -22px color-mix(in oklab, #a87acb 55%, transparent);
   --shadow-3d:
-    0 2px 0 rgba(255, 255, 255, 0.85) inset, 0 -18px 40px -28px rgba(20, 60, 55, 0.55),
-    0 34px 70px -34px rgba(20, 60, 55, 0.55);
+    0 2px 0 rgba(255, 255, 255, 0.85) inset, 0 -18px 40px -28px rgba(62, 51, 130, 0.38),
+    0 34px 70px -34px rgba(62, 51, 130, 0.38);
 }
 
 @layer base {
@@ -100,7 +100,11 @@
     scroll-behavior: smooth;
   }
   body {
-    background: var(--gradient-patchwork);
+    background:
+      radial-gradient(circle at 12% 12%, rgba(255, 255, 255, 0.85), transparent 18%),
+      radial-gradient(circle at 80% 18%, rgba(255, 223, 173, 0.7), transparent 16%),
+      radial-gradient(circle at 30% 82%, rgba(184, 192, 255, 0.6), transparent 18%),
+      var(--gradient-patchwork);
     background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
@@ -112,7 +116,7 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
   }
 }
 
@@ -167,7 +171,7 @@
 }
 @utility gold-rule {
   height: 1px;
-  background: linear-gradient(90deg, transparent, #d4a852, transparent);
+  background: linear-gradient(90deg, transparent, #8e8fe8, transparent);
 }
 
 @keyframes float-slow {
@@ -209,14 +213,14 @@
 @keyframes rise {
   0% {
     opacity: 0;
-    transform: translateY(0) scale(0.6);
+    transform: translateY(0) scale(0.6) rotate(0deg);
   }
   15% {
     opacity: 0.9;
   }
   100% {
     opacity: 0;
-    transform: translateY(-140px) scale(1.15);
+    transform: translateY(-140px) scale(1.25) rotate(18deg);
   }
 }
 @keyframes spin-slow {
@@ -253,4 +257,28 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+@keyframes float-up-sparkle {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.6) rotate(0deg);
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(18px, -120vh, 0) scale(1.35) rotate(20deg);
+  }
+}
+
+.floating-emoji {
+  position: absolute;
+  bottom: -12vh;
+  display: inline-block;
+  filter: drop-shadow(0 0 12px rgba(255, 164, 214, 0.9));
+  animation-name: float-up-sparkle;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }

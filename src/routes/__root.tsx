@@ -58,13 +58,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Happy 50th Birthday, Sir Martin" },
+      { title: "Happy 20th Birthday, Laleti" },
       {
         name: "description",
         content:
-          "A jubilee tribute website for Sir Martin, turning 50 — fifty years of love, sacrifice and quiet strength.",
+          "A birthday tribute website for Laleti, celebrating her twentieth year.",
       },
-      { name: "author", content: "Precious" },
+      { name: "author", content: "Someone who loves Laleti dearly" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

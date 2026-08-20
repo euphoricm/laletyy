@@ -1,0 +1,1 @@
+var e=`2120`,t=`Her birth date plus her new age make the key.`,n=[`LALETI`,`TWENTY`,`SISTER`,`GORGEOUS`,`AWESOME`,`BIRTHDAY`,`SMART`,`KINDNESS`,`SUNSHINE`,`QUEEN`,`MAKENA`,`MURIITHI`,`SPARKLE`,`SUCCESSFUL`,`ENGINEER`,`BLESSED`,`RADIANT`,`LOVED`,`VALUED`,`FOREVER`];export{t as n,n as r,e as t};

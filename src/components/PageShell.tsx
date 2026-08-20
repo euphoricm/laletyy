@@ -1,10 +1,13 @@
 import type { ReactNode } from "react";
 import { SiteFooter } from "./SiteFooter";
 
+import { FloatingEmojis } from "./FloatingEmojis";
+
 export function PageShell({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen">
-      <main className="pt-20">{children}</main>
+    <div className="relative min-h-screen overflow-x-hidden">
+      <FloatingEmojis />
+      <main className="relative z-10 pt-20">{children}</main>
       <SiteFooter />
     </div>
   );

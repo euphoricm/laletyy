@@ -1,75 +1,82 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, PageHeader } from "@/components/PageShell";
-import { NextRoom } from "@/components/NextRoom";
-import { Tilt3D } from "@/components/Tilt3D";
-import { gallery } from "@/lib/photos";
+import { MediaSlot } from "@/components/MediaSlot";
 
-export const Route = createFileRoute("/gallery")({
-  head: () => ({
-    meta: [
-      { title: "Gallery — Fifty Years of Sir Martin" },
-      {
-        name: "description",
-        content:
-          "A photo gallery of my father, Sir Martin, in the places his hard work took him — a jubilee birthday tribute.",
-      },
-      { property: "og:title", content: "Gallery — Fifty Years of Sir Martin" },
-      {
-        property: "og:description",
-        content: "Your face, in all the places your hard work took you.",
-      },
-    ],
-  }),
-  component: GalleryPage,
-});
+export const Route = createFileRoute("/gallery")({ component: GalleryPage });
+const photos = [
+  "A little glow",
+  "Pretty without trying",
+  "Main character energy",
+  "Soft smile, big heart",
+  "A whole mood",
+  "Birthday girl magic",
+  "Just Laleti things",
+  "A smile that lights up the room",
+  "A quiet little sparkle",
+];
+const galleryImages = [
+  "/media/laleti-01.jpg",
+  "/media/laleti-02.jpg",
+  "/media/laleti-03.jpg",
+  "/media/laleti-04.jpg",
+  "/media/laleti-05.jpg",
+  "/media/laleti-06.jpg",
+  "/media/laleti-07.jpg",
+];
 
 function GalleryPage() {
   return (
     <PageShell>
       <PageHeader
-        eyebrow="Chapter 04"
+        eyebrow="Twenty in pictures"
         title={
           <>
-            A gallery of <span className="text-gold font-semibold">you</span>
+            A gallery of <span className="text-gold font-semibold">Laleti</span>
           </>
         }
-        intro="Photographs of a man who kept showing up. Tilt them, hold them, look at them the way I look at them."
+        intro="A collection of beautiful moments, favourite smiles and the moving memories that make this birthday story feel alive."
       />
-
-      <section className="mx-auto max-w-6xl px-5 pb-6 sm:px-10">
-        <div className="grid gap-8 sm:grid-cols-2">
-          {gallery.map((g, i) => (
-            <Tilt3D key={i} max={10} className={i % 3 === 0 ? "sm:col-span-2" : ""}>
-              <figure
-                className="animate-fade-up overflow-hidden rounded-4xl bg-white/90 shadow-3d"
-                style={{ animationDelay: `${i * 80}ms` }}
-              >
-                <img
-                  src={g.src}
-                  alt={g.caption}
-                  loading="lazy"
-                  className={`w-full object-cover ${i % 3 === 0 ? "h-95 sm:h-155" : "h-[360px] sm:h-[480px]"}`}
-                />
-                <figcaption className="p-6 sm:p-8">
-                  <p className="font-display text-xl sm:text-2xl">{g.caption}</p>
-                  <p className="mt-3 font-hand text-2xl text-foreground/70">{g.note}</p>
-                </figcaption>
-              </figure>
-            </Tilt3D>
-          ))}
-        </div>
+      <section className="mx-auto grid max-w-6xl gap-6 px-5 pb-10 sm:grid-cols-2 lg:grid-cols-3">
+        {galleryImages.map((src, i) => (
+          <figure
+            key={`${src}-${i}`}
+            className="overflow-hidden rounded-3xl bg-white/90 shadow-soft-mint"
+          >
+            <MediaSlot
+              src={src}
+              alt={`Laleti memory ${i + 1}`}
+              className="h-80 w-full object-cover"
+            />
+            <figcaption className="p-5 font-hand text-2xl text-foreground/75">
+              {photos[i] ?? "A little sparkle"}
+            </figcaption>
+          </figure>
+        ))}
       </section>
-
-      <section className="mx-auto max-w-3xl px-6 pt-16 text-center sm:px-10">
-        <div className="gold-rule mx-auto w-40" />
-        <p className="mt-8 text-lg leading-relaxed text-foreground/75">
-          In every one of these pictures, you are away from home, working. That's the part that
-          undoes me. Fifty years old and there is barely a photograph of you resting. Dad, this year
-          — please rest. You've earned it a hundred times over.
-        </p>
+      <section className="mx-auto grid max-w-6xl gap-6 px-5 pb-10 sm:grid-cols-2 lg:grid-cols-3">
+        {[1, 2, 3].map((n) => (
+          <figure
+            key={n}
+            className="overflow-hidden rounded-3xl bg-white/90 shadow-soft-mint"
+          >
+            <video
+              controls
+              preload="metadata"
+              className="h-80 w-full bg-lavender-gradient object-cover"
+            >
+              <source src={`/media/laleti-video-0${n}.mp4`} type="video/mp4" />
+            </video>
+            <figcaption className="p-5 font-hand text-2xl text-foreground/75">
+              A moment in motion
+            </figcaption>
+          </figure>
+        ))}
       </section>
-
-      <NextRoom to="/his-words" label="Next: Dad's own words" />
+      <div className="pb-16 text-center">
+        <Link to="/my-reply" className="text-sm font-medium text-primary">
+          Continue to the memory reel
+        </Link>
+      </div>
     </PageShell>
   );
 }

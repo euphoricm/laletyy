@@ -10,7 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CakeRouteImport } from './routes/cake'
+import { Route as CodeRouteImport } from './routes/code'
+import { Route as CrosswordRouteImport } from './routes/crossword'
 import { Route as FiftyRouteImport } from './routes/fifty'
+import { Route as FinaleRouteImport } from './routes/finale'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as HeroRouteImport } from './routes/hero'
 import { Route as HisWordsRouteImport } from './routes/his-words'
@@ -25,9 +29,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CakeRoute = CakeRouteImport.update({
+  id: '/cake',
+  path: '/cake',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CodeRoute = CodeRouteImport.update({
+  id: '/code',
+  path: '/code',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CrosswordRoute = CrosswordRouteImport.update({
+  id: '/crossword',
+  path: '/crossword',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FiftyRoute = FiftyRouteImport.update({
   id: '/fifty',
   path: '/fifty',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinaleRoute = FinaleRouteImport.update({
+  id: '/finale',
+  path: '/finale',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
@@ -73,7 +97,11 @@ const WishesRoute = WishesRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cake': typeof CakeRoute
+  '/code': typeof CodeRoute
+  '/crossword': typeof CrosswordRoute
   '/fifty': typeof FiftyRoute
+  '/finale': typeof FinaleRoute
   '/gallery': typeof GalleryRoute
   '/hero': typeof HeroRoute
   '/his-words': typeof HisWordsRoute
@@ -85,7 +113,11 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cake': typeof CakeRoute
+  '/code': typeof CodeRoute
+  '/crossword': typeof CrosswordRoute
   '/fifty': typeof FiftyRoute
+  '/finale': typeof FinaleRoute
   '/gallery': typeof GalleryRoute
   '/hero': typeof HeroRoute
   '/his-words': typeof HisWordsRoute
@@ -98,7 +130,11 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cake': typeof CakeRoute
+  '/code': typeof CodeRoute
+  '/crossword': typeof CrosswordRoute
   '/fifty': typeof FiftyRoute
+  '/finale': typeof FinaleRoute
   '/gallery': typeof GalleryRoute
   '/hero': typeof HeroRoute
   '/his-words': typeof HisWordsRoute
@@ -112,7 +148,11 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/cake'
+    | '/code'
+    | '/crossword'
     | '/fifty'
+    | '/finale'
     | '/gallery'
     | '/hero'
     | '/his-words'
@@ -124,7 +164,11 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/cake'
+    | '/code'
+    | '/crossword'
     | '/fifty'
+    | '/finale'
     | '/gallery'
     | '/hero'
     | '/his-words'
@@ -136,7 +180,11 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/cake'
+    | '/code'
+    | '/crossword'
     | '/fifty'
+    | '/finale'
     | '/gallery'
     | '/hero'
     | '/his-words'
@@ -149,7 +197,11 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CakeRoute: typeof CakeRoute
+  CodeRoute: typeof CodeRoute
+  CrosswordRoute: typeof CrosswordRoute
   FiftyRoute: typeof FiftyRoute
+  FinaleRoute: typeof FinaleRoute
   GalleryRoute: typeof GalleryRoute
   HeroRoute: typeof HeroRoute
   HisWordsRoute: typeof HisWordsRoute
@@ -169,11 +221,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cake': {
+      id: '/cake'
+      path: '/cake'
+      fullPath: '/cake'
+      preLoaderRoute: typeof CakeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/code': {
+      id: '/code'
+      path: '/code'
+      fullPath: '/code'
+      preLoaderRoute: typeof CodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crossword': {
+      id: '/crossword'
+      path: '/crossword'
+      fullPath: '/crossword'
+      preLoaderRoute: typeof CrosswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/fifty': {
       id: '/fifty'
       path: '/fifty'
       fullPath: '/fifty'
       preLoaderRoute: typeof FiftyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/finale': {
+      id: '/finale'
+      path: '/finale'
+      fullPath: '/finale'
+      preLoaderRoute: typeof FinaleRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -237,7 +317,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CakeRoute: CakeRoute,
+  CodeRoute: CodeRoute,
+  CrosswordRoute: CrosswordRoute,
   FiftyRoute: FiftyRoute,
+  FinaleRoute: FinaleRoute,
   GalleryRoute: GalleryRoute,
   HeroRoute: HeroRoute,
   HisWordsRoute: HisWordsRoute,

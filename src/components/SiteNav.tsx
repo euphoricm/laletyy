@@ -28,10 +28,10 @@ export function SiteNav() {
         <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 sm:px-8">
           <Link to="/" className="flex min-w-0 items-center gap-3">
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold-gradient shadow-soft-gold">
-              <span className="font-display text-base font-bold text-white">50</span>
+              <span className="font-display text-base font-bold text-white">20</span>
             </span>
             <span className="min-w-0 truncate font-display text-lg font-semibold tracking-tight">
-              Sir Martin
+              Laleti
             </span>
           </Link>
           <nav className="hidden items-center gap-1 xl:flex">
@@ -97,7 +97,7 @@ export function SiteNav() {
             ))}
           </nav>
           <p className="mt-10 font-hand text-2xl text-foreground/70">
-            fifty years, and every page is a thank you.
+            twenty years, and every page is made with love.
           </p>
         </aside>
       </div>

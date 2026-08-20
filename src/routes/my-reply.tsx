@@ -1,49 +1,39 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell, PageHeader } from "@/components/PageShell";
-import { NextRoom } from "@/components/NextRoom";
-import voiceNote from "./note.ogg";
+import { Video } from "lucide-react";
 
-export const Route = createFileRoute("/my-reply")({
-  head: () => ({
-    meta: [
-      { title: "My Reply — What I Said Back to My Father" },
-      {
-        name: "description",
-        content: "A voice note reply to my father's jubilee reflection.",
-      },
-      { property: "og:title", content: "My Reply to Dad" },
-      {
-        property: "og:description",
-        content: "What I said back, through tears — a voice note.",
-      },
-    ],
-  }),
-  component: MyReplyPage,
-});
+export const Route = createFileRoute("/my-reply")({ component: ReelPage });
 
-function MyReplyPage() {
+function ReelPage() {
   return (
     <PageShell>
       <PageHeader
-        eyebrow="Chapter 06"
+        eyebrow="Press play"
         title={
           <>
-            My <span className="text-gold font-semibold">reply</span>, in my own voice
+            A little <span className="text-gold font-semibold">memory reel</span>
           </>
         }
-        intro="I tried to write a reply, but I couldn't find the words. So I recorded one instead. Press play, Dad."
+        intro="Your videos will live here: the laughter, the movement, the moments a photo cannot keep."
       />
-
-      <section className="mx-auto max-w-2xl px-5 pb-8 sm:px-8">
-        <div className="rounded-4xl bg-white/90 p-8 shadow-soft-mint backdrop-blur">
-          <audio controls className="w-full">
-            <source src={voiceNote} type="audio/ogg" />
-            Your browser does not support the audio element.
-          </audio>
-        </div>
+      <section className="mx-auto grid max-w-5xl gap-6 px-5 pb-16 md:grid-cols-3">
+        {[1, 2, 3, 4, 5].map((n) => (
+          <div key={n} className="overflow-hidden rounded-3xl bg-white/90 shadow-soft-mint">
+            <video controls className="h-80 w-full bg-lavender-gradient object-cover">
+              <source src={`/video${n}.mp4`} type="video/mp4" />
+            </video>
+            <div className="flex items-center gap-2 p-4 font-hand text-xl">
+              <Video className="h-4 w-4 text-primary" />
+              Laleti on film
+            </div>
+          </div>
+        ))}
       </section>
-
-      <NextRoom to="/prayers" label="Next: my prayers for your jubilee" />
+      <div className="pb-16 text-center">
+        <Link to="/prayers" className="text-sm font-medium text-primary">
+          Continue to birthday blessings
+        </Link>
+      </div>
     </PageShell>
   );
 }

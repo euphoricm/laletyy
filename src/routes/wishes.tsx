@@ -8,16 +8,16 @@ import { Heart, Send } from "lucide-react";
 export const Route = createFileRoute("/wishes")({
   head: () => ({
     meta: [
-      { title: "Birthday Wishes for Sir Martin's 50th" },
+      { title: "Birthday Wishes for Laleti's 20th" },
       {
         name: "description",
         content:
-          "A wall of 50th birthday wishes for Sir Martin — read the messages, and leave one of your own.",
+          "A wall of birthday wishes for Laleti — read the messages and leave one of your own.",
       },
-      { property: "og:title", content: "Birthday Wishes for Sir Martin" },
+      { property: "og:title", content: "Birthday Wishes for Laleti" },
       {
         property: "og:description",
-        content: "Read the wishes for Dad's jubilee, and leave one of your own.",
+        content: "Read the wishes for Laleti and leave one of your own.",
       },
     ],
   }),
@@ -26,7 +26,7 @@ export const Route = createFileRoute("/wishes")({
 
 type Wish = { name: string; message: string };
 
-const STORAGE_KEY = "martin50-wishes";
+const STORAGE_KEY = "laleti20-wishes";
 
 function WishesPage() {
   const [wishes, setWishes] = useState<Wish[]>([]);
@@ -70,7 +70,7 @@ function WishesPage() {
               The <span className="text-gold font-semibold">wishes</span> wall
             </>
           }
-          intro="Everyone who loves you gets a square on this wall. Add yours — Dad will read every single one."
+          intro="Everyone who loves Laleti gets a square on this wall. Add yours and make her birthday sweeter."
         />
       </div>
 
@@ -85,7 +85,7 @@ function WishesPage() {
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="e.g. Precious"
+            placeholder="Your name"
             className="mt-3 w-full rounded-2xl border border-border bg-secondary px-5 py-3.5 text-foreground outline-none transition focus:border-primary"
           />
           <label className="mt-6 block text-xs uppercase tracking-[0.3em] text-foreground/55">
@@ -95,7 +95,7 @@ function WishesPage() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             rows={4}
-            placeholder="Happy 50th, Sir Martin…"
+            placeholder="Happy 20th, Laleti..."
             className="mt-3 w-full resize-none rounded-2xl border border-border bg-secondary px-5 py-3.5 text-foreground outline-none transition focus:border-primary"
           />
           <button
@@ -105,7 +105,9 @@ function WishesPage() {
             <Send className="h-4 w-4" /> Add my wish
           </button>
           {sent ? (
-            <p className="mt-4 font-hand text-2xl text-primary">added to the wall. thank you 🫶</p>
+            <p className="mt-4 font-hand text-2xl text-primary">
+              added to the wall. thank you 🫶
+            </p>
           ) : null}
         </form>
       </section>
@@ -118,8 +120,12 @@ function WishesPage() {
               className="card-3d relative overflow-hidden rounded-3xl bg-white/90 p-7 shadow-soft-mint backdrop-blur"
             >
               <Heart className="h-5 w-5 text-gold" />
-              <p className="mt-4 leading-relaxed text-foreground/80">{w.message}</p>
-              <p className="mt-5 font-hand text-2xl text-foreground/70">— {w.name}</p>
+              <p className="mt-4 leading-relaxed text-foreground/80">
+                {w.message}
+              </p>
+              <p className="mt-5 font-hand text-2xl text-foreground/70">
+                — {w.name}
+              </p>
             </div>
           ))}
         </div>
@@ -128,7 +134,7 @@ function WishesPage() {
         </p>
       </section>
 
-      <NextRoom to="/" label="Back to the beginning" />
+      <NextRoom to="/finale" label="One last thing for Laleti" />
     </PageShell>
   );
 }
@@ -137,16 +143,16 @@ const seedWishes: Wish[] = [
   {
     name: "Precious",
     message:
-      "Happy 50th Birthday, Dad. Thank you for being my first hero, my greatest teacher, and the safest place I've ever known. To fifty amazing years, and to many, many more.",
+      "Happy 20th Birthday, Laleti. May your new year bring beautiful memories, huge joy and every good thing your heart is hoping for.",
   },
   {
-    name: "Your family",
+    name: "Sissy",
     message:
-      "Fifty years of quiet strength. Thank you for carrying us all this way. Enjoy your jubilee, Sir Martin.",
+      "You are gorgeous, awesome and so deeply loved. Keep shining exactly as you are.",
   },
   {
-    name: "Everyone you've helped",
+    name: "Makena",
     message:
-      "You've helped people who could never pay you back. Today, may all of it come back to you multiplied.",
+      "Cheers to twenty wonderful years and to a future that is even brighter.",
   },
 ];

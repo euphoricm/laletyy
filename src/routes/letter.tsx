@@ -1,104 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PageShell, PageHeader } from "@/components/PageShell";
-import { Tilt3D } from "@/components/Tilt3D";
-import { photos } from "@/lib/photos";
-import { NextRoom } from "@/components/NextRoom";
-
+import { TributeRoom } from "@/components/TributeRoom";
 export const Route = createFileRoute("/letter")({
-  head: () => ({
-    meta: [
-      { title: "The Letter — For My Father, Sir Martin, at 50" },
-      {
-        name: "description",
-        content:
-          "A long, honest letter to my father on his 50th birthday: thank you for every sacrifice, every early morning, and for choosing us every single day.",
-      },
-      { property: "og:title", content: "The Letter — For Sir Martin at 50" },
-      {
-        property: "og:description",
-        content: "The long letter I've been writing in my heart for years.",
-      },
-    ],
-  }),
-  component: LetterPage,
+  component: () => (
+    <TributeRoom
+      room={{
+        eyebrow: "My dearest Laleti",
+        title: "A letter for twenty",
+        intro: "Happy twentieth birthday to the big sister my heart chose.",
+        lines: [
+          "Laleti, happy twentieth birthday. I have been thinking about how to start this for days, because anything short would be a lie about how much space you take up in my life. You are not just someone I know; you are the big sister my heart chose, the person I measure kindness against, the one whose opinion quietly matters more than she realises. So today is not a small day to me. Today is the anniversary of the world getting one of its best people, and I refuse to whisper about it.",
+          "You turned twenty and somehow you did it the way you do everything else - gracefully, a little dramatically, and looking absolutely unfair while you were at it. You are gorgeous, and I do not mean it the cheap way people say it in captions. I mean that your face lights up when you talk about things you love, and it changes the temperature of a room. I mean that you carry yourself like someone who has survived things and still chose softness. That is the kind of beautiful that photographs cannot fully hold, though we both know your photographs try their absolute hardest.",
+          "What amazes me most, though, is how awesome you are in the ordinary moments. You remember the small details nobody asks you to remember. You check in when you are the one who should be checked on. You give advice with that mix of honesty and tenderness that makes it impossible to be offended. When I have been at my most confused, you have been the voice that made things simple again, and you did it without ever making me feel small for not knowing. That is a rare talent, and you use it like it costs you nothing.",
+          "Being your little sibling in spirit has taught me more than I would admit out loud. You showed me that you can be gentle and still have boundaries, that you can be funny and still be deep, that you can be tired and still be kind. Watching you handle your life has quietly rewritten the way I handle mine. Every time I choose patience instead of panic, that is you. Every time I decide to keep believing in people, that is you too. You are in more of my choices than you know.",
+          "Twenty is such an interesting doorway. You are old enough to see the shape of who you are becoming, and young enough that almost none of it is fixed yet. So here is my wish for you: may this year be embarrassingly kind to you. May the plans you have been holding privately begin to move. May the people who love you be loud about it. May your health be boring, your money be sufficient, your laughter be frequent, and your peace be extremely difficult to disturb. And when the year gets heavy - because years do - may you remember that you have never once had to carry things alone.",
+          "I also hope you get selfish this year, in the good way. Rest without earning it first. Take the picture. Buy the thing. Say no without writing an essay. Let people show up for you the way you show up for everyone else. You have spent so long being someone's safe place that I sometimes wonder who gets to be yours. Let this little website be a small answer: I am here, permanently, unremarkably, without conditions.",
+        ],
+        next: "/cake",
+        nextLabel: "Make a birthday wish",
+      }}
+    />
+  ),
 });
-
-function LetterPage() {
-  return (
-    <PageShell>
-      <PageHeader
-        eyebrow="Letter no. 01"
-        title={
-          <>
-            To the man I call <span className="text-gold font-semibold">Dad</span>
-          </>
-        }
-        intro="Read it slowly. I wrote it slowly."
-      />
-
-      <section className="relative mx-auto max-w-3xl px-5 pb-8 sm:px-8">
-        <Tilt3D max={5} glare={false}>
-          <article className="rounded-[2rem] bg-white/92 p-7 shadow-3d backdrop-blur sm:p-14">
-            <p className="font-hand text-3xl text-foreground/80">Dear Daddy,</p>
-
-            <div className="mt-8 space-y-6 text-[1.02rem] leading-[1.9] text-foreground/85 sm:text-lg">
-              {paragraphs.map((p, i) => (
-                <p
-                  key={i}
-                  className={
-                    i === 0
-                      ? "first-letter:float-left first-letter:mr-3 first-letter:font-display first-letter:text-6xl first-letter:leading-[0.8] first-letter:text-gold"
-                      : ""
-                  }
-                >
-                  {p}
-                </p>
-              ))}
-            </div>
-
-            <div className="gold-rule my-12" />
-
-            <p className="font-hand text-3xl leading-snug text-foreground/80">
-              Happy 50th Birthday, Dad.
-              <br />I love you more than words will ever be able to say.
-            </p>
-            <p className="mt-6 text-sm uppercase tracking-[0.3em] text-foreground/55">
-              — your little princess
-            </p>
-          </article>
-        </Tilt3D>
-      </section>
-
-      <section className="mx-auto max-w-4xl px-6 pb-4 sm:px-10">
-        <Tilt3D max={8}>
-          <figure className="overflow-hidden rounded-[2rem] shadow-3d">
-            <img
-              src={photos.stadium}
-              alt="Sir Martin standing outside a stadium in Doha"
-              className="h-[320px] w-full object-cover sm:h-[520px]"
-            />
-            <figcaption className="bg-white/90 p-6 font-hand text-2xl text-foreground/75 backdrop-blur">
-              You crossed oceans so that we would never have to cross anything alone.
-            </figcaption>
-          </figure>
-        </Tilt3D>
-      </section>
-
-      <NextRoom to="/fifty" label="Next: fifty thank-yous, one for every year" />
-    </PageShell>
-  );
-}
-
-const paragraphs = [
-  "As I sit here trying to find the right words, I realise that no message could ever truly capture how grateful I am to have you as my father. Fifty years. Fifty whole years of a life that has quietly shaped mine in ways I am still discovering.",
-  "You've given so much of yourself for our family — your time, your strength, your dreams, your comfort — often without asking for anything in return. Some of the things you've done for us probably went unnoticed at the time. They will never be forgotten. I noticed. I still notice.",
-  "Thank you for every sacrifice you made so that I could have opportunities you may never have had. Thank you for working hard even when you were tired, even when your body begged you to rest, even when nobody was watching and there was no applause waiting at the end of the day.",
-  "Thank you for the mornings you left before the sun did. Thank you for the buses, the long shifts, the hot afternoons far away from home. Thank you for the phone calls where you sounded strong for me when I know now you were exhausted. Thank you for choosing us — every single day, without hesitation, without complaint.",
-  "Everything you've done has been an expression of love. Not the loud kind that asks to be seen, but the steady kind that just keeps showing up. That's the kind of love I learned from you, and it's the kind of love I try to give the world.",
-  "Dad, if I become even half the person you are, I'll consider my life a success. You've taught me that real strength isn't about never falling — it's about getting back up, carrying the people you love with you, and never giving up on them. You taught me that with your life, not with a lecture.",
-  "I hope you know how deeply you are loved. I hope you know that your life has made a difference. That your kindness has shaped me. That your presence has been one of the greatest blessings I have ever been given. There is no version of me that exists without you in it.",
-  "And I want you to hear this clearly, because I think you sometimes forget it: please don't let your past mistakes define how you see yourself. To me, you have always been an incredible father. Your strength, your faith, your sacrifices and your unconditional love shaped me into the person I am today. If there's one thing you've succeeded in beyond measure, it's being an amazing dad.",
-  "I also want you to know that I believe in you. It's never too late for God to fulfil His promises. I pray that every dream you've carried quietly in your heart comes to pass — that doors open that no one can shut, that everything you've lost is restored, and that you finally get to enjoy the fruit of everything you've worked so hard for.",
-  "As you turn 50 today, my prayer is that God blesses you with the same love, peace and happiness you've spent your whole life giving to others. May He give you many more healthy years so we can keep making memories together — the ordinary ones, the loud ones, the quiet Sunday ones.",
-  "Thank you for being my first hero, my greatest teacher, and the safest place I have ever known. To fifty amazing years, and to many, many more.",
-];
