@@ -20,7 +20,7 @@ function ReelPage() {
         {[1, 2, 3, 4, 5].map((n) => (
           <div key={n} className="overflow-hidden rounded-3xl bg-white/90 shadow-soft-mint">
             <video controls className="h-80 w-full bg-lavender-gradient object-cover">
-              <source src={`/video${n}.mp4`} type="video/mp4" />
+              <source src={`/media/video${n}.mp4`} type="video/mp4" />
             </video>
             <div className="flex items-center gap-2 p-4 font-hand text-xl">
               <Video className="h-4 w-4 text-primary" />
