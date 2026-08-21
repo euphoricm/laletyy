@@ -3,7 +3,7 @@ import { n as require_jsx_runtime, r as require_react, t as QueryClientProvider 
 import { _ as useRouter, c as HeadContent, d as Outlet, f as lazyRouteComponent, h as Link, m as createRootRouteWithContext, p as createFileRoute, s as Scripts, u as createRouter } from "../_libs/@tanstack/react-router+[...].mjs";
 import { c as Music, o as Play, s as Pause, t as X, u as Menu } from "../_libs/lucide-react.mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-S7pZiZJu.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-wyAsRju4.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var styles_default = "/assets/styles-DDOEkAqg.css";
@@ -380,7 +380,7 @@ var $$splitComponentImporter$9 = () => import("./fifty-DOMTrmDr.mjs");
 var Route$9 = createFileRoute("/fifty")({ component: lazyRouteComponent($$splitComponentImporter$9, "component") });
 var $$splitComponentImporter$8 = () => import("./finale-YRhZ0F07.mjs");
 var Route$8 = createFileRoute("/finale")({ component: lazyRouteComponent($$splitComponentImporter$8, "component") });
-var $$splitComponentImporter$7 = () => import("./gallery-FsNDANqj.mjs");
+var $$splitComponentImporter$7 = () => import("./gallery-CWeOu2f7.mjs");
 var Route$7 = createFileRoute("/gallery")({ component: lazyRouteComponent($$splitComponentImporter$7, "component") });
 var $$splitComponentImporter$6 = () => import("./hero-Cpby-hRG.mjs");
 var Route$6 = createFileRoute("/hero")({ component: lazyRouteComponent($$splitComponentImporter$6, "component") });

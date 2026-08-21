@@ -53,25 +53,6 @@ function GalleryPage() {
           </figure>
         ))}
       </section>
-      <section className="mx-auto grid max-w-6xl gap-6 px-5 pb-10 sm:grid-cols-2 lg:grid-cols-3">
-        {[1, 2, 3].map((n) => (
-          <figure
-            key={n}
-            className="overflow-hidden rounded-3xl bg-white/90 shadow-soft-mint"
-          >
-            <video
-              controls
-              preload="metadata"
-              className="h-80 w-full bg-lavender-gradient object-cover"
-            >
-              <source src={`/media/laleti-video-0${n}.mp4`} type="video/mp4" />
-            </video>
-            <figcaption className="p-5 font-hand text-2xl text-foreground/75">
-              A moment in motion
-            </figcaption>
-          </figure>
-        ))}
-      </section>
       <div className="pb-16 text-center">
         <Link to="/my-reply" className="text-sm font-medium text-primary">
           Continue to the memory reel
